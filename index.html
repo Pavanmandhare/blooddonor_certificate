@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation Certificate Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@700&display=swap">
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Donor Information</h2>
+
+        <div class="input-group">
+            <label>Upload Donor Photo:</label>
+            <input type="file" id="photo-input" accept="image/*">
+        </div>
+
+        <div class="input-group">
+            <label>Donor Name:</label>
+            <input type="text" id="donor-name" required>
+        </div>
+
+        <div class="input-group">
+            <label>Hospital Name:</label>
+            <input type="text" id="hospital-name" required>
+        </div>
+
+        <div class="input-group">
+            <label>Location:</label>
+            <input type="text" id="location" required>
+        </div>
+
+        <div class="input-group">
+            <label>Blood Group:</label>
+            <select id="blood-group" required>
+                <option value="रक्त गट : A+ve">A+</option>
+                <option value="रक्त गट : A-ve">A-</option>
+                <option value="रक्त गट : B+ve">B+</option>
+                <option value="रक्त गट : B-ve">B-</option>
+                <option value="रक्त गट : AB+ve">AB+</option>
+                <option value="रक्त गट : AB-ve">AB-</option>
+                <option value="रक्त गट : O+ve">O+</option>
+                <option value="रक्त गट : O-ve">O-</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Donation Date:</label>
+            <input type="date" id="donation-date" required>
+        </div>
+        <div class="input-group">
+            <label>Co-ordinator:</label>
+            <input type="text" id="co_ordinator" required>
+        </div>
+        <button class="generate-btn" onclick="generateCertificate()">Generate Certificate</button>
+    </div>
+
+    <div class="crop-modal" id="cropModal">
+        <div class="crop-box">
+            <img id="crop-image">
+            <div class="crop-controls">
+                <button onclick="saveCrop()" class="btn-green">OK</button>
+                <button onclick="cancelCrop()" class="btn-red">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="certificate-container">
+        <div class="certificate-overlay"></div> <!-- Certificate foreground design -->
+        <img id="donor-photo" class="donor-photo"><!-- Donor photo behind the certificate -->
+        <div class="certificate-content">
+            <h1 id="cert-name"></h1>
+            <div class="data">
+            <div class="icon-text">
+                <img src="h_n.png" alt="Hospital Icon">
+                <span id="cert-hospital"></span>
+            </div>
+            <div class="icon-text">
+                <img src="h_a.png" alt="Location Icon">
+                <span id="cert-location"></span>
+            </div>
+            <div class="icon-text">
+                <img src="d_bg.png" alt="Blood Icon">
+                <span id="cert-blood"></span>
+            </div>
+            <div class="icon-text">
+                <img src="d_d.png" alt="Calendar Icon">
+                <span id="cert-date"></span>
+            </div>
+            <div class="icon-text">
+                <img src="d_h.png" alt="Person Icon">
+                <strong>सेवेकरी : <span id="cert-co_ordinator"></span></strong>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
